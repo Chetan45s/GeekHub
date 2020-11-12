@@ -25,6 +25,7 @@
                 $stmt->execute(array('username' => $username));
                 
                 $row = $stmt->fetch();
+
                 
                 if(isset($row['password'])){
                     return $row['password'];
@@ -43,8 +44,13 @@
             $hashed = $this->get_user_hash($username);
             
             if($this->verify_hash($password,$hashed) == 1){
+                $stmt = $this->db->prepare('SELECT user_id FROM users WHERE username = :username');
+                $stmt->execute(array('username' => $username));
+                
+                $row = $stmt->fetch();
                 
                 $_SESSION['loggedin'] = true;
+                $_SESSION['id'] = $row['user_id'];
                 return true;
             }        
         }
@@ -52,6 +58,9 @@
         public function logout(){
             session_destroy();
           }
+        public function self_user(){
+            return $_SESSION['id'];
+        }
     }
 
 ?>

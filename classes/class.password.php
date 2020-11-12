@@ -148,7 +148,7 @@ if (!defined('PASSWORD_DEFAULT')) {
          */
         function password_get_info($hash) {
             $return = array('algo' => 0, 'algoName' => 'unknown', 'options' => array(), );
-            if (substr($hash, 0, 4) == '$2y && strlen($hash) == 60) {
+            if (substr($hash, 0, 4) == $2y && strlen($hash) == 60) {
                 $return['algo'] = PASSWORD_BCRYPT;
                 $return['algoName'] = 'bcrypt';
                 list($cost) = sscanf($hash, "$2y$%d$");

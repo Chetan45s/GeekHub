@@ -8,6 +8,7 @@ ini_set('display_errors',0);
     if(!$user->is_logged_in()){ 
         header('Location: login.php'); 
     }
+    $self_user = $user->self_user();
 ?>
 
 <?php include("head.php");  ?>
@@ -29,8 +30,9 @@ ini_set('display_errors',0);
   </script>
 
   <?php include("header.php"); ?>
-
-<div class="content">
+</div>
+<div class="container">
+<div class="row">
  
     <h1>Add New Blog</h1>
 
@@ -60,8 +62,8 @@ ini_set('display_errors',0);
             try {
                 //insert into database
                 $blog_slug = slug($blog_title);
-                $stmt = $db->prepare('INSERT INTO blog (blog_title,blog_slug,blog_desp,blog_content,blog_datetime,blog_tags) 
-                                        VALUES (:blog_title,:blog_slug, :blog_desp, :blog_content, :blog_datetime, :blog_tags)');
+                $stmt = $db->prepare('INSERT INTO blog (blog_title,blog_slug,blog_desp,blog_content,blog_datetime,blog_tags,user_id) 
+                                        VALUES (:blog_title,:blog_slug, :blog_desp, :blog_content, :blog_datetime, :blog_tags, :self_user)');
     
 
                 $stmt->execute(array(
@@ -71,6 +73,7 @@ ini_set('display_errors',0);
                     ':blog_content' => $blog_content,
                     ':blog_datetime' => date('Y-m-d H:i:s'),
                     ':blog_tags' => $blog_tags,
+                    ':self_user' => $self_user,
                 ));
                 //add categories
                 $blog_id = $db->lastInsertId();
@@ -111,21 +114,30 @@ ini_set('display_errors',0);
     }
 
 ?>
-
+<div class = "card">
+<div class="card-body m-auto">
     <form action="" method="post">
 
+        <div class="form-group">
         <h2><label>Article Title</label><br>
-        <input type="text" name="blog_title" style="width:100%;height:40px" value="<?php if(isset($error)){ echo $_POST['blog_title'];}?>"></h2>
+        <input class="form-control" type="text" name="blog_title" style="width:100%;height:40px" value="<?php if(isset($error)){ echo $_POST['blog_title'];}?>"></h2>
 
+</div>
+        <div class="form-group">
         <h2><label>Short Description(Meta Description) </label><br>
-        <textarea name="blog_desp" cols="120" rows="6"><?php if(isset($error)){ echo $_POST['blog_desp'];}?></textarea></h2>
+        <textarea class="form-control" name="blog_desp" cols="120" rows="6"><?php if(isset($error)){ echo $_POST['blog_desp'];}?></textarea></h2>
 
+</div>
+        <div class="form-group">
         <h2><label>Long Description(Body Content)</label><br>
-        <textarea name="blog_content" id="textarea1" class="mceEditor" cols="120" rows='20'><?php if(isset($error)){ echo $_POST['blog_content'];}?></textarea></h2>
+        <textarea class="form-control" name="blog_content" id="textarea1" class="mceEditor" cols="120" rows='20'><?php if(isset($error)){ echo $_POST['blog_content'];}?></textarea></h2>
 
+</div>
+        <div class="form-group">
         <h2><label>Blog Tags (Separated by comma without space)</label><br>
-        <input type='text' name='blog_tags' value='<?php if(isset($error)){ echo $_POST['blog_tags'];}?>' style="width:100%;height:40px"></h2>
+        <input class="form-control" type='text' name='blog_tags' value='<?php if(isset($error)){ echo $_POST['blog_tags'];}?>' style="width:100%;height:40px"></h2>
 
+</div>
         <fieldset>
             <h2><legend>Categories</legend>
 
@@ -151,10 +163,14 @@ ini_set('display_errors',0);
                 ?>
             </h2>
         </fieldset>
-        <button name="submit" class="subbtn">Submit</button>
+        <button name="submit" class="btn btn-success subbtn">Submit</button>
 
     </form>
 
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <?php include("footer.php");  ?>

@@ -1,27 +1,23 @@
-<div class="sidebar">
-    <h2>Quick Shorcut</h2>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
 
-    <a href="index.php">View Articles
-    </a>
-    <a href="add-blog.php">Add New Blog Post
-    </a>
-    <a href="blog-categories.php">View Categories
-    </a>
-    <a href="add-blog-category.php">Add New Category
-    </a>
-    <a href="blog-users.php">View Users
-    </a>
-    <a href="add-blog-page.php">Add New Page
-    </a>
-    <a href="blog-pages.php">View Pages
-    </a>
-    <a href="add-blog-user.php">Add New Users
-    </a>
-    <a target="_blank" href="../">Visit Blog
-    </a>
-    <?php 
-  $sql = $db->query('select count(*) from blog')->fetchColumn(); 
-echo'<h2>Total Posted '.'<font color="red">'.$sql.'</font>'.'</h2>' ;
-?>
+<ul class="nav navbar-nav side-nav">    
+  <li><h3>Quick Shorcut</h3></li>
 
+  <li><a href="http://localhost/GeekHub/admin/index.php"><i class="fa fa-globe"></i> View Articles</a></li>
+  <li><a href="http://localhost/GeekHub/admin/add-blog.php"><i class="fa fa-list-ol"></i> Add New Blog Post</a></li>
+  <li><a href="http://localhost/GeekHub/admin/blog-categories.php"><i class="fa fa-list-ol"></i> View Categories</a></li>
+  <li><a href="http://localhost/GeekHub/admin/add-blog-category.php"><i class="fa fa-list-ol"></i> Add New Category</a></li>
+  <li><a href="http://localhost/GeekHub/admin/blog-users.php"><i class="fa fa-list-ol"></i> View Users</a></li>
+  <li><a href="http://localhost/GeekHub/admin/add-blog-page.php"><i class="fa fa-list-ol"></i> Add New Page</a></li>
+  <li><a href="http://localhost/GeekHub/admin/blog-pages.php"><i class="fa fa-list-ol"></i> View Pages</a></li>
+  <li><a href="http://localhost/GeekHub/admin/add-blog-user.php"><i class="fa fa-list-ol"></i> Add New Users</a></li>
+  <li><a href="http://localhost/GeekHub/index.php"><i class="fa fa-list-ol"></i> Visit Blog</a></li>
+
+  <?php 
+    $sql = $db->query('select count(*) from blog')->fetchColumn(); 
+  echo '<li><h3>Total Posted '.'<font color="red">'.$sql.'</font>'.'</h3></li>';
+  ?>
+
+  </ul>
 </div>
+</nav>

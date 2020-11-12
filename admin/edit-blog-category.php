@@ -8,8 +8,12 @@
 <title>EDIT Category | GeekHub</title>
 <?php include("header.php");  ?>
 
-<div class="content">
-    <h2>Edit Category | GeekHub</h2>
+<?php include("sidebar.php");  ?>
+
+
+<div class="container">
+<div class="row">
+    <h2>Edit Category</h2>
 
     <?php
 
@@ -80,6 +84,7 @@
 
     <form action="" method="post">
         <input type='hidden' name='cat_id' value='<?php echo $row['cat_id'];?>'>
+        <div class="form-group">
 
         <p>
             <label>Category Title</label><br>
@@ -87,13 +92,17 @@
                 type='text'
                 name='cat_name'
                 value='<?php echo $row['cat_name'];?>'>
-
+                <br>
+<br>
         </p>
-        <p><input type="submit" name="submit" value="Update"></p>
-
+        <p><input class="btn btn-success subbtn" type="submit" name="submit" value="Update"></p>
+</div>
     </form>
 
+    </div>
 </div>
-<?php include("sidebar.php");  ?>
+</div>
+</div>
+</div>
 
 <?php include("footer.php");  ?>

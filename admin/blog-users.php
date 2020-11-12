@@ -25,7 +25,9 @@
 ?>
 
 <?php include("head.php");  ?>
+
   <title>Users - GeekHub Blog</title>
+
   <script language="JavaScript" type="text/javascript">
   function deluser(id, title)
   {
@@ -35,65 +37,101 @@
     }
   }
   </script>
-  <?php include("header.php");  ?>
+<?php include("header.php");  ?>
+<?php include("sidebar.php");  ?>
 
-<div class="content">
- <?php 
-  //show message from add / edit page
-  if(isset($_GET['action'])){ 
-    echo '<h3>User '.$_GET['action'].'.</h3>'; 
-  } 
-  ?>
+<div class="container">
+<div class="row">
+  <?php 
+    //show message from add / edit page
+    if(isset($_GET['action'])){ 
+      echo '<h3>User '.$_GET['action'].'.</h3>'; 
+    } 
+    ?>
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">Your Detail</header>
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i> Username</th>
+                    <th><i class="icon_calendar"></i> Email</th>
+                    <th><i class="icon_cogs"></i> Update</th>
+                  </tr>
 
-  <table>
-  <tr>
-    <th>Username </th>
-    <th>Email </th>
-    <th>Edit </th>
-    <th>Delete </th>
+        <?php
+          try {
+            $stmt = $db->query('SELECT user_id, username, email FROM users ORDER BY user_id');
 
-  </tr>
-   <?php
-    try {
-
-      $stmt = $db->query('SELECT user_id, username, email FROM users ORDER BY user_id');
-      while($row = $stmt->fetch()){
-        
-        echo ' <tr>';
-        echo ' <td>'.$row['username'].' </td>';
-        echo ' <td>'.$row['email'].' </td>';
-        ?>
-
-        <td>
-          <button class="editbtn"><a href="edit-blog-user.php?id=<?php echo $row['user_id'];?>">Edit</a> </button>
-          <?php if($row['user_id'] != 1){?>
-          </td>
-            <td><button class="delbtn"><a href="javascript:deluser('<?php echo $row['user_id'];?>','<?php echo $row['username'];?>')">Delete</a></button>
-
-          <?php } 
-
+            while($row = $stmt->fetch()){
+              if($row['user_id'] == $user->self_user()){
+                echo ' <tr>';
+                echo ' <td>'.$row['username'].' </td>';
+                echo ' <td>'.$row['email'].' </td>';
           ?>
-        </td>
-        
-        <?php 
-        echo '</tr>';
-
-      }
-
-    } catch(PDOException $e) {
+        <td><a class="btn btn-primary" href="edit-blog-user.php?id=<?php echo $row['user_id'];?>">Edit</a> </td>
+            </tr>
+        <?php
+          }
+        }
+        }
+    catch(PDOException $e) {
         echo $e->getMessage();
     }
-  ?>
-  </table>
+    ?>
+          </table>
+      </section>
+    </div>
 
-  <p><button class="editbtn"><a href='add-blog-user.php'>Add User</a></button></p>
 
+    <?php 
+    //show message from add / edit page
+    if(isset($_GET['action'])){ 
+      echo '<h3>User '.$_GET['action'].'.</h3>'; 
+    } 
+    ?>
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">Bloggers</header>
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i> Username</th>
+                    <th><i class="icon_calendar"></i> Email</th>
+                    <th><i class="icon_cogs"></i> Update</th>
+                    <th><i class="icon_cogs"></i> Remove</th>
+                  </tr>
+
+        <?php
+          try {
+            $stmt = $db->query('SELECT user_id, username, email FROM users ORDER BY user_id');
+
+            while($row = $stmt->fetch()){
+              if($user->self_user() == 1){
+                echo ' <tr>';
+                echo ' <td>'.$row['username'].' </td>';
+                echo ' <td>'.$row['email'].' </td>';
+        ?>
+              <td><a class="btn btn-primary" href="edit-blog-user.php?id=<?php echo $row['user_id'];?>">Edit</a> </td>
+              <td><a class="btn btn-danger delbtn" href="javascript:deluser('<?php echo $row['user_id'];?>','<?php echo $row['username'];?>')">Delete</a> </td>
+              </tr>
+      <?php
+              }
+            }
+          }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+      ?>
+          </table>
+      </section>
+    </div>
 
 </div>
+    <a class="btn btn-default" href='add-blog-user.php'>Add User</a>
+</div>
+</div>
   
-
-
-
 <?php include("footer.php");  ?>
 
 

@@ -20,8 +20,11 @@ $cid = $row['blog_id'];
     <meta name="keywords" content="<?php echo $row['blog_tags'];?>">
 
 <?php include("header.php");  ?>
+</u>
+</div>
+
 <div class="container">
-    <div class="content">
+    <div class="row">
 
         <?php
             echo '<div>';
@@ -104,8 +107,8 @@ s.setAttribute('data-timestamp', +new Date());
                             
 
     </div>
-<?php include("sidebar.php");  ?>
 
+</div>
 </div>
 
 <?php include("footer.php");  ?>

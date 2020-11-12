@@ -23,10 +23,11 @@
     </script>
 
 <?php include("header.php");  ?>
+</div>
 
-<div class="content">
- 
-<h2>Edit Post</h2>
+<div class="container">
+<div class="row">
+<h3>Edit Post</h3>
 
 <?php   
     if(isset($_POST['submit'])){
@@ -110,27 +111,39 @@
 
 ?>
 
+
+<div class = "card">
+<div class="card-body m-auto">
     <form action='' method='post'>
         <input type='hidden' name='blog_id' value="<?php echo $row['blog_id'];?>">
-        <h2><label>Blog Title</label><br>
 
-        <input type='text' name='blog_title' style="width:100%;height:40px" value="<?php echo $row['blog_title'];?>"></h2>
+        <div class="form-group">
+        <h3><label>Blog Title</label><br>
+        <textarea class="form-control" name='blog_title' rows="3" cols="180" value='<?php echo $row['blog_title'];?>'> </textarea>
+        </div>
 
-        <h2><label>Article Slug(Manual Customize)</label><br>
-        <input type='text' name='blog_slug' style="width:100%;height:40px" value='<?php echo $row['blog_slug'];?>'></h2>
+        <div class="form-group">
+        <h3><label>Article Slug(Manual Customize)</label><br>
+        <input class="form-control" type='text' name='blog_slug' style="width:100%;height:40px" value='<?php echo $row['blog_slug'];?>'></h3>
+        </div>
 
-       <h2><label>Short Description(Meta Description) </label><br>
-        <textarea name='blog_desp' cols='120' rows='6'><?php echo $row['blog_desp'];?></textarea></h2>
+        <div class="form-group">
+       <h3><label>Short Description(Meta Description) </label><br>
+        <textarea class="form-control" name='blog_desp' cols='20' rows='6'><?php echo $row['blog_desp'];?></textarea></h3>
+    </div>
 
-       <h2><label>Long Description(Body Content)</label><br>
-        <textarea name='blog_content' id='textarea1' class='mceEditor' cols='120' rows='20'><?php echo $row['blog_content'];?></textarea></h2>
-
-        <h2><label>Blog Tags (Seprated by comma without space)</label><br>
-        <input type='text' name='blog_tags' style="width:100%;height:40px;"value='<?php echo $row['blog_tags'];?>'>
-        <br></h2>
+        <div class="form-group">
+       <h3><label>Long Description(Body Content)</label><br>
+        <textarea class="form-control" name='blog_content' id='textarea1' class='mceEditor' cols='120' rows='20'><?php echo $row['blog_content'];?></textarea></h3>
+</div>
+        <div class="form-group">
+        <h3><label>Blog Tags (Seprated by comma without space)</label><br>
+        <input class="form-control" type='text' name='blog_tags' style="width:100%;height:40px;"value='<?php echo $row['blog_tags'];?>'>
+        <br></h3>
+        <div>
 
         <fieldset>
-            <h2><legend>Categories</legend>
+            <h3><legend>Categories</legend>
 
             <?php
             $checked = null;
@@ -154,13 +167,15 @@
             }
 
             ?>
-            </h2>
+            </h3>
         </fieldset>
-        <button name='submit' class="subbtn"> Update</button>
+        <button name='submit' class="btn btn-success subbtn"> Update</button>
 
     </form>
 
 </div>
+</div>
   
-
+</div>
+</div>
 <?php include("footer.php");  ?>

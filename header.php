@@ -1,22 +1,30 @@
-<link href="http://localhost/GeekHub/assets/style.css" rel="stylesheet" type="text/css">
-<link href="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="http://localhost/GeekHub/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/GeekHub/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/GeekHub/css/local.css" />
+
+<script type="text/javascript" src="http://localhost/GeekHub/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://localhost/GeekHub/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- you need to include the shieldui css and js assets in order for the charts to work -->
+<link rel="stylesheet" type="text/css" href="http://localhost/GeekHub/css/all.min.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/GeekHub/css/all1.min.css" />
+<!-- <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" /> -->
+<!-- <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" /> -->
+
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
 </head>
 <body>
-<ul class="ulclass">
-<li><a href="http://localhost/GeekHub/">Home</a></li>
-<?php
-    $baseUrl="http://localhost/GeekHub/page/"; 
-            try {
-
-                $stmt = $db->query('SELECT page_title,page_slug FROM pages ORDER BY page_id ASC');
-                while($rowlink = $stmt->fetch()){
-                    
-                    echo '<li><a href="'.$baseUrl.''.$rowlink['page_slug'].'">'.$rowlink['page_title'].'</a></li>';
-                }
-
-            } catch(PDOException $e) {
-                echo $e->getMessage();
-            }
-    ?>
-</ul>
-<script id="dsq-count-scr" src="//localhost-yervjmnvbu.disqus.com/count.js" async></script>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost/GeekHub/">Home</a>
+            </div>
+            
+            <ul class="nav navbar-nav navbar-right navbar-user">
+            
+            <li><a href='http://localhost/GeekHub/discuss.php'>Discuss</a></li>
+            <li><a href="http://localhost/GeekHub/join.php">Join Us</a></li>
+            <li><a href="http://localhost/GeekHub/about.php">About Us</a></li>
+            <li><a href="http://localhost/GeekHub/privacy.php">Privacy Policy</a></li>
+            

@@ -7,8 +7,11 @@
 <?php include("head.php");  ?>
 <title>Add New Category | GeekHub</title>
 <?php include("header.php");  ?>
+<?php include("sidebar.php");  ?>
 
-<div class="content">
+
+<div class="container">
+<div class="row">
     <h2>Add Category</h2>
 
     <?php
@@ -56,20 +59,28 @@
         }
     }
     ?>
-
+<div class = "card">
+<div class="card-body m-auto">
     <form action="" method="post">
+    <div class="form-group">
 
-        <h2>
+        <h3>
             <label>Category Title</label><br>
             <input
                 type='text'
                 name='cat_name'
                 value='<?php if(isset($error)){ echo $_POST['cat_name'];}?>'>
-            <p><input type="submit" name="submit" value="Submit"></p>
+<br>
+<br>
+            <p><input class="btn btn-success subbtn" type="submit" name="submit" value="Submit"></p>
 
-        </h2>
+        </h3>
+    </div>
     </form>
 </div>
-<?php include("sidebar.php");  ?>
+</div>
+</div>
+</div>
+</div>
 
 <?php include("footer.php");  ?>

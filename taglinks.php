@@ -5,7 +5,10 @@
     <title><?php echo htmlspecialchars($_GET['id']);?> | GeekHub</title>
 
 <?php include("header.php");  ?>
-<div class="content">
+</ul>
+</div>
+<div class="container">
+<div class="row">
 
 
     <p>Blog in tag:- <?php echo htmlspecialchars($_GET['id']);?></p>
@@ -58,6 +61,6 @@
 
             ?>
 </div>
-<?php include("sidebar.php");  ?>
+</div>
 
 <?php include("footer.php");  ?>

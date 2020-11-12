@@ -30,61 +30,57 @@ if(isset($_GET['delpost'])){
     }
 </script>
 <?php include("header.php");  ?>
+<?php include("sidebar.php");  ?>
 
-<div class="content">
+<div class="container">
+<div class="row">
     <?php 
     //show message from add / edit page
     if(isset($_GET['action'])){ 
         echo '<h3>Post '.$_GET['action'].'.</h3>'; 
     } 
     ?>
-
-    <table>
-        <tr>
-            <th>Blog Title</th>
-
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-        <?php
-        try {
-
-            $stmt = $db->query('SELECT page_id,page_title,page_desp,page_content,page_keywords FROM pages ORDER BY page_id DESC');
-            while($row = $stmt->fetch()){
-                
-                echo '<tr>';
-                echo '<td>'.$row['page_title'].'</td>';
-                
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">Pages</header>
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i> Name</th>
+                    <th><i class="icon_cogs"></i> Update</th>
+                    <th><i class="icon_cogs"></i> Delete</th>
+                  </tr>
+                <?php
+                  try {
+                    $stmt = $db->query('SELECT page_id,page_title,page_desp,page_content,page_keywords FROM pages ORDER BY page_id DESC');
+                        while($row = $stmt->fetch()){
+                            
+                            echo '<tr>';
+                            echo '<td>'.$row['page_title'].'</td>';
+                            
                 ?>
 
-        <td>
-            <button class="editbtn">
-                <a href="edit-blog-page.php?page_id=<?php echo $row['page_id'];?>">Edit</a>
-            </button>
-        </td>
-        <td>
-            <button class="delbtn">
-                <a
-                    href="javascript:delpost('<?php echo $row['page_id'];?>','<?php echo $row['page_title'];?>')">Delete</a>
-            </button>
-        </td>
+                        <td>
+                            <a class="btn btn-primary" href="edit-blog-page.php?page_id=<?php echo $row['page_id'];?>">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger delbtn"
+                                href="javascript:delpost('<?php echo $row['page_id'];?>','<?php echo $row['page_title'];?>')">Delete</a>
+                        </td>
 
-        <?php 
-                echo '</tr>';
+                <?php 
+                            echo '</tr>';
 
-            }
+                        }
 
-        } catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-    ?>
-    </table>
-
-    <p>
-        <button class="editbtn">
-            <a href='add-blog-page.php'>Add New Page</a>
-        </button>
-    </p>
+                        } catch(PDOException $e) {
+                        echo $e->getMessage();
+                        }
+                ?>
+                  </table>
+        </section>
+    </div>
+    <a class="btn btn-default" href='add-blog-page.php'>Add New Page</a>
 </div>
-<?php include("sidebar.php");  ?>
+</div>
 <?php include("footer.php");  ?>
