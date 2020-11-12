@@ -65,6 +65,7 @@
 
 <li><a href="http://localhost/GeekHub/discuss.php"><i class="fa fa-globe"></i> Discuss</a></li>
 <li><a href="http://localhost/GeekHub/join.php"><i class="fa fa-list-ol"></i> Join us</a></li>
+<li><a href="http://localhost/GeekHub/work.php"> How we work</a></li>
            
 </ul>
 

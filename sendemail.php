@@ -12,7 +12,9 @@ $alert = '';
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
+  $link = $_POST['link'];
   $message = $_POST['message'];
+  $exp = $_POST['exp'];
 
   try{
     $mail->isSMTP();
@@ -28,7 +30,7 @@ if(isset($_POST['submit'])){
 
     $mail->isHTML(true);
     $mail->Subject = 'Message Received (Contact Page)';
-    $mail->Body = "<h3>Name : $name <br>Email: $email <br>Message : $message</h3>";
+    $mail->Body = "<h3>Name : $name <br>Email: $email <br>Link : $link<br>Expertise : $exp <br>Message : $message</h3>";
 
     $mail->send();
     $alert = '<div class="alert-success">
